@@ -1,0 +1,293 @@
+PARTE 1: IDENTIFICACIÓN DE COMPONENTES (ARQUITECTURA)
+1. Análisis del sistema
+
+El sistema “Huellitas Saludables” es una plataforma que integra dos servicios principales:
+
+Atención veterinaria
+Servicio de cuidadores de mascotas
+
+El sistema debe gestionar información relacionada con:
+
+Usuarios
+Mascotas
+Citas veterinarias
+Solicitudes de cuidado
+Estadísticas y reportes
+
+Debido a que existen múltiples procesos conectados entre sí, es necesario dividir el sistema en módulos o componentes para mejorar la organización, facilitar el mantenimiento y permitir un desarrollo más estructurado.
+
+Por ejemplo:
+
+Un usuario registra su cuenta.
+Luego registra una mascota.
+Después puede:
+Agendar una cita veterinaria.
+Solicitar un cuidador.
+2. Funcionalidades identificadas
+
+Las funcionalidades principales del sistema son:
+
+Registrar usuarios
+Registrar mascotas
+Agendar citas veterinarias
+Solicitar servicios de cuidadores
+Consultar estadísticas
+Ver información por fechas y horarios
+3. Agrupación de funcionalidades en componentes
+3.1 Módulo de Usuarios
+
+Este módulo administra la información de las personas que utilizan el sistema.
+
+Funciones:
+Registro de usuarios
+Inicio de sesión
+Gestión de roles
+Roles del sistema:
+Dueños de mascotas
+Veterinarios
+Cuidadores
+Administradores
+Importancia:
+
+Todos los demás módulos dependen de este componente, ya que permite identificar quién realiza cada acción dentro del sistema.
+
+3.2 Módulo de Mascotas
+
+Este módulo permite registrar y administrar las mascotas.
+
+Funciones:
+Registro de mascotas
+Edición de información
+Asociación con el dueño
+Importancia:
+
+La mascota es el elemento central del sistema, porque tanto las citas veterinarias como los servicios de cuidado se realizan sobre una mascota específica.
+
+3.3 Módulo de Citas Veterinarias
+
+Este módulo administra las consultas médicas de las mascotas.
+
+Funciones:
+Agendamiento de citas
+Consulta de horarios disponibles
+Cancelación y reprogramación
+Reglas importantes:
+Evitar citas duplicadas en el mismo horario.
+Validar disponibilidad del veterinario.
+Importancia:
+
+Es uno de los módulos principales porque representa el servicio veterinario del sistema.
+
+3.4 Módulo de Cuidadores
+
+Este módulo administra el servicio de cuidado de mascotas.
+
+Funciones:
+Registro de cuidadores
+Configuración de disponibilidad
+Solicitud de servicios
+Importancia:
+
+Amplía los servicios de la plataforma y permite conectar dueños de mascotas con cuidadores.
+
+3.5 Módulo de Reportes y Estadísticas
+
+Este módulo permite analizar la información generada por el sistema.
+
+Funciones:
+Estadísticas de citas
+Reportes por fecha y hora
+Análisis de servicios más utilizados
+Importancia:
+
+Ayuda en la toma de decisiones y el control administrativo.
+
+PARTE 2: DEFINICIÓN DE ARQUITECTURA
+1. Tipo de arquitectura seleccionada
+
+Se selecciona una arquitectura monolítica en tres capas.
+
+2. Descripción de la arquitectura
+Capa de Presentación (Frontend)
+
+Es la interfaz visual con la que interactúa el usuario.
+
+Permite:
+
+Registrarse
+Iniciar sesión
+Agendar citas
+Solicitar cuidadores
+Capa Lógica (Backend / API)
+
+Aquí se procesan las solicitudes del sistema.
+
+Funciones:
+
+Validación de datos
+Aplicación de reglas de negocio
+Comunicación con la base de datos
+Capa de Datos (Base de Datos)
+
+Almacena toda la información del sistema.
+
+Ejemplos:
+
+Usuarios
+Mascotas
+Citas
+Servicios
+Reportes
+3. Justificación de la arquitectura
+
+Se selecciona esta arquitectura porque:
+
+Es más sencilla de implementar.
+Facilita el aprendizaje y desarrollo.
+Organiza correctamente el sistema.
+Permite evolucionar posteriormente a microservicios.
+
+PARTE 3: DECISIONES DE ARQUITECTURA
+
+1. Separación entre Frontend y Backend
+
+Sí se realiza separación.
+
+Beneficios:
+Mejor organización
+Mayor facilidad de mantenimiento
+Escalabilidad futura
+Posibilidad de crear aplicaciones móviles posteriormente
+2. Uso de API REST
+
+Sí se implementa una API REST.
+
+Beneficios:
+
+Comunicación entre frontend y backend mediante HTTP.
+Uso de métodos:
+GET
+POST
+PUT
+DELETE
+
+3. Uso de Caché
+
+Sí se implementa caché en el módulo de estadísticas.
+
+Beneficios:
+Mejora el rendimiento
+Reduce consultas repetidas
+Optimiza tiempos de respuesta
+PARTE 4: DISEÑO DEL SISTEMA
+Funcionalidad: Registrar Usuario
+Endpoint
+
+POST 
+/api/usuarios
+JSON de solicitud
+{
+  "nombre": "Camilo Morales",
+  "email": "camilo11@email.com",
+  "password": "123456",
+  "rol": "dueño"
+}
+Respuesta Exitosa
+{
+  "error": null,
+  "status":true, 
+  "data" : null,
+  "mensaje": "Usuario registrado correctamente",
+  "codigo": 201 #el valor tiene que ser igual # colocar o no 
+}
+Respuestas de Error
+1. Campos vacíos
+{
+  "error": true,
+  "mensaje": "Todos los campos son obligatorios",
+  "codigo": 400
+}
+2. Correo ya registrado
+{
+  "error": true,
+  "mensaje": "El correo ya se encuentra registrado",
+  "codigo": 409
+}
+3. Contraseña muy corta
+{
+  "error": true,
+  "mensaje": "La contraseña debe tener mínimo 6 caracteres",
+  "codigo": 400
+}
+4. Rol inválido
+{
+  "error": true,
+  "mensaje": "El rol ingresado no es válido",
+  "codigo": 400
+}
+Funcionalidad: Agendar Cita
+Endpoint
+POST /citas
+JSON de solicitud
+{
+  "id_usuario": 1,
+  "id_mascota": 2,
+  "id_veterinario": 3,
+  "fecha": "2026-05-10",
+  "hora": "10:00"
+}
+Respuesta Exitosa
+{
+  "error": false,
+  "mensaje": "Cita agendada correctamente",
+  "codigo": 201
+}
+Respuestas de Error
+1. Mascota no encontrada
+{
+  "error": true,
+  "mensaje": "La mascota no existe",
+  "codigo": 404
+}
+2. Veterinario no disponible
+{
+  "error": true,
+  "mensaje": "El veterinario no está disponible en ese horario",
+  "codigo": 409
+}
+3. Fecha inválida
+{
+  "error": true,
+  "mensaje": "La fecha ingresada no es válida",
+  "codigo": 400
+}
+4. Campos incompletos
+{
+  "error": true,
+  "mensaje": "Todos los datos de la cita son obligatorios",
+  "codigo": 400
+}
+PARTE 5: ARQUITECTURA VS DISEÑO
+Elemento	Clasificación
+Uso de API REST	Arquitectura
+Separación Frontend y Backend	Arquitectura
+Uso de Caché	Arquitectura
+Crear endpoints	Diseño
+Definir tablas	Diseño
+Estructura de JSON	Diseño
+Validaciones de formularios	Diseño
+PARTE 6: EVOLUCIÓN DEL SISTEMA
+
+Si el sistema crece en cantidad de usuarios y funcionalidades, se podrían separar algunos módulos en microservicios.
+
+Posibles microservicios:
+Servicio de citas veterinarias
+Servicio de cuidadores
+Servicio de reportes
+Razones:
+Mayor escalabilidad
+Mejor rendimiento
+Independencia entre módulos
+Facilidad de mantenimiento
+
+Esto permitiría que cada servicio funcione de manera independiente y soporte una mayor cantidad de usuarios simultáneamente.
