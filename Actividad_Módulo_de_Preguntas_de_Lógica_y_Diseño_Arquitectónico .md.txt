@@ -1,0 +1,245 @@
+Parte Teórica (Responder preguntas del 1 al 7)
+
+
+
+
+Parte 1 — Arquitectura
+
+
+
+
+1. ¿Por qué es importante separar rutas y controladores?
+
+Porque permite mantener el código ordenado, reutilizable y fácil de mantener.
+
+Las rutas solo definen los endpoints HTTP.
+
+Los controladores contienen la lógica de negocio.
+
+
+
+
+2. ¿Qué problemas existirían si toda la lógica estuviera en app.js?
+
+Archivo enorme y difícil de leer.
+
+Dificultad para mantener, depurar o escalar el proyecto.
+
+Mezcla de responsabilidades (rutas, lógica, BD, respuestas).
+
+
+
+
+3. ¿Qué responsabilidad tiene un controlador?
+
+Recibir datos del request.
+
+Validar datos.
+
+Llamar a los modelos (consultas SQL).
+
+Enviar respuesta al cliente.
+
+
+
+
+
+4. ¿Qué responsabilidad tiene una ruta?
+
+Definir el endpoint (ej: /api/users).
+
+Asociar el método HTTP (GET, POST, PUT, DELETE) con un controlador específico.
+
+
+
+
+
+
+5. ¿Por qué se usa arquitectura por capas?
+
+Para separar responsabilidades: rutas, controladores, servicios, modelos.
+
+Mejor mantenimiento, escalabilidad y testing.
+
+
+
+
+
+Parte 2 — Base de Datos
+
+
+
+
+6. ¿Por qué el correo debe ser UNIQUE?
+
+Para evitar duplicados y asegurar que cada usuario tenga un correo único.
+
+
+7. ¿Por qué no se deben guardar passwords sin hash?
+
+Porque si alguien accede a la BD, vería las contraseñas reales.
+
+Se guardan con hash (ej: bcrypt) para protegerlas.
+
+
+
+
+8. ¿Qué ventaja tiene usar SQL parametrizado?
+
+Evita inyección SQL.
+
+Mejora la seguridad y el rendimiento.
+
+
+
+
+
+Parte 3 — Request y Response
+Request analizado:
+
+json
+{
+  "nombre": "Carlos",
+  "correo": "carlos@gmail.com",
+  "password": "123456"
+}
+
+
+
+
+¿Qué datos viajan desde el cliente?
+
+nombre, correo, password.
+
+
+
+¿Qué datos son sensibles?
+
+password.
+
+
+
+¿Qué validaciones harías?
+
+Correo válido.
+
+Password con mínimo 6 caracteres.
+
+Campos no vacíos.
+
+Response analizado:
+
+json
+{ 
+  "success": true, 
+  "message": "Usuario registrado", 
+  "data": { "id": 1 }, 
+  "error": null 
+}
+
+
+
+
+¿Por qué es importante unificar respuestas?
+
+El frontend sabe siempre qué esperar.
+
+Facilita el manejo de errores y éxito.
+
+
+
+
+¿Qué ventajas tiene para frontend?
+
+Puede mostrar mensajes automáticos.
+
+Sabe si fue éxito o error con success.
+
+
+
+
+
+¿Qué significa success?
+
+Indica si la operación fue exitosa (true) o falló (false).
+
+
+
+Parte 4 — Diseño de API
+Endpoint: PUT /api/users/:id
+
+
+
+
+
+¿Qué hace?
+Actualiza los datos de un usuario existente.
+
+
+
+¿Qué método HTTP usa?
+PUT
+
+¿Qué datos recibe?
+
+Parámetro id en la URL.
+
+Body con los campos a actualizar (nombre, correo, etc.).
+
+
+
+
+¿Qué response debería retornar?
+
+json
+{
+  "success": true,
+  "message": "Usuario actualizado",
+  "data": { "id": 1 }
+}
+
+
+
+
+
+
+
+
+
+
+Parte 5 — Lógica Backend (Flujo de Login)
+
+
+
+Flujo:
+
+text
+Cliente → Ruta → Controlador → SQL → Validación password → Respuesta
+
+
+
+¿Qué sucede en cada paso?
+
+Cliente: envía correo y password.
+
+Ruta: recibe petición POST /login.
+
+Controlador: valida datos, busca usuario.
+
+SQL: consulta usuario por correo.
+
+Validación password: compara hash con bcrypt.
+
+Respuesta: success true/false.
+
+
+
+¿Dónde ocurre la lógica?
+En el controlador.
+
+
+
+¿Dónde ocurre la conexión MySQL?
+En un archivo db.js o dentro del modelo.
+
+
