@@ -480,15 +480,3 @@ Email: s4nsy150@gmail.com
 
 > **"Aprender haciendo" - Filosofía SENA**
 
-```
-
----
-
-## 📝 **¿Cómo usar este README?**
-
-1. Copia TODO el contenido del código de arriba
-2. Pega en tu archivo `README.md`
-3. Reemplaza los datos entre corchetes `[ ]` con tus datos personales
-4. Guarda el archivo
-
-¡Este README muestra todo el proceso de aprendizaje y justifica cada decisión técnica que tomaste!
