@@ -1,9 +1,9 @@
 # Proyecto Base API Node.js + PostgreSQL
 
 
-# 🚀 API Node.js + PostgreSQL - Proyecto Base
+#  API Node.js + PostgreSQL - Proyecto Base
 
-## 📋 Información del Estudiante
+##  Información del Estudiante
 
 | Campo | Información |
 |-------|-------------|
@@ -17,18 +17,18 @@
 
 ---
 
-## 🎯 Objetivo del Proyecto
+##  Objetivo del Proyecto
 
 Desarrollar una API REST funcional para gestión de usuarios, aplicando los conceptos fundamentales de:
 
-- ✅ Conexión a base de datos PostgreSQL
-- ✅ Creación de rutas y endpoints
-- ✅ Implementación de controladores con lógica de negocio
-- ✅ Consultas SQL directas y parametrizadas
-- ✅ Arquitectura en capas (separación de responsabilidades)
-- ✅ Respuestas JSON estandarizadas
-- ✅ Manejo de variables de entorno
-- ✅ Encriptación de contraseñas con bcrypt
+-  Conexión a base de datos PostgreSQL
+-  Creación de rutas y endpoints
+-  Implementación de controladores con lógica de negocio
+-  Consultas SQL directas y parametrizadas
+-  Arquitectura en capas (separación de responsabilidades)
+-  Respuestas JSON estandarizadas
+-  Manejo de variables de entorno
+-  Encriptación de contraseñas con bcrypt
 
 ---
 
@@ -149,7 +149,7 @@ api-node-postgres-base/
 
 ---
 
-## 🔧 Proceso de Desarrollo (Paso a Paso)
+##  Proceso de Desarrollo (Paso a Paso)
 
 ### **Paso 1: Creación del proyecto**
 ```bash
@@ -326,7 +326,7 @@ app.use("/api/users", userRoutes);
 
 ---
 
-## 🧪 Pruebas Realizadas
+##  Pruebas Realizadas
 
 ### **Prueba 1: Registro de usuario**
 ```bash
@@ -334,7 +334,7 @@ curl -X POST http://localhost:3000/api/users/register \
   -H "Content-Type: application/json" \
   -d '{"nombre":"Carlos Perez","correo":"carlos@test.com","password":"123456"}'
 ```
-✅ **Resultado esperado:** Usuario creado con ID 1
+ **Resultado esperado:** Usuario creado con ID 1
 
 ### **Prueba 2: Login**
 ```bash
@@ -342,13 +342,13 @@ curl -X POST http://localhost:3000/api/users/login \
   -H "Content-Type: application/json" \
   -d '{"correo":"carlos@test.com","password":"123456"}'
 ```
-✅ **Resultado esperado:** Datos del usuario
+ **Resultado esperado:** Datos del usuario
 
 ### **Prueba 3: Listar usuarios**
 ```bash
 curl -X GET http://localhost:3000/api/users
 ```
-✅ **Resultado esperado:** Array con los usuarios
+ **Resultado esperado:** Array con los usuarios
 
 ### **Prueba 4: Correo duplicado**
 ```bash
@@ -356,11 +356,11 @@ curl -X POST http://localhost:3000/api/users/register \
   -H "Content-Type: application/json" \
   -d '{"nombre":"Otro","correo":"carlos@test.com","password":"123456"}'
 ```
-✅ **Resultado esperado:** Error "Correo ya registrado"
+ **Resultado esperado:** Error "Correo ya registrado"
 
 ---
 
-## 📊 Diferencias que Aprendí entre MySQL y PostgreSQL
+##  Diferencias que Aprendí entre MySQL y PostgreSQL
 
 | Concepto | MySQL | PostgreSQL | ¿Qué aprendí? |
 |----------|-------|------------|----------------|
@@ -372,7 +372,7 @@ curl -X POST http://localhost:3000/api/users/register \
 
 ---
 
-## 🐛 Errores que Encontré y Cómo los Solucioné
+##  Errores que Encontré y Cómo los Solucioné
 
 | Error | Causa | Solución |
 |-------|-------|----------|
@@ -384,25 +384,25 @@ curl -X POST http://localhost:3000/api/users/register \
 
 ---
 
-## ✅ Competencias Desarrolladas
+##  Competencias Desarrolladas
 
 ### **Técnicas:**
-- ✅ Creación de API REST con Express
-- ✅ Conexión y consultas a PostgreSQL
-- ✅ Encriptación de datos sensibles
-- ✅ Manejo de errores y excepciones
-- ✅ Uso de variables de entorno
-- ✅ Control de versiones con Git
+-  Creación de API REST con Express
+-  Conexión y consultas a PostgreSQL
+-  Encriptación de datos sensibles
+-  Manejo de errores y excepciones
+-  Uso de variables de entorno
+-  Control de versiones con Git
 
 ### **Blandas:**
-- ✅ Organización y planificación
-- ✅ Resolución de problemas
-- ✅ Documentación técnica
-- ✅ Seguimiento de instrucciones
+-  Organización y planificación
+-  Resolución de problemas
+-  Documentación técnica
+-  Seguimiento de instrucciones
 
 ---
 
-## 🚀 Cómo Ejecutar este Proyecto
+## Cómo Ejecutar este Proyecto
 
 ### **Requisitos previos:**
 - Node.js instalado (v18+)
@@ -437,7 +437,7 @@ curl http://localhost:3000
 
 ---
 
-## 📝 Reflexión Final (Qué Aprendí)
+##  Reflexión Final (Qué Aprendí)
 
 Este proyecto me permitió comprender los fundamentos de una API REST desde cero. Aprendí que:
 
@@ -452,7 +452,7 @@ La diferencia más importante que aprendí fue entre MySQL y PostgreSQL: los pla
 
 ---
 
-## 🔗 Recursos que Utilicé
+##  Recursos que Utilicé
 
 - [Documentación oficial de Node.js](https://nodejs.org/)
 - [Documentación de Express](https://expressjs.com/)
@@ -462,13 +462,13 @@ La diferencia más importante que aprendí fue entre MySQL y PostgreSQL: los pla
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
 Este proyecto fue desarrollado con fines educativos como parte del programa de formación del SENA.
 
 ---
 
-## 👤 Datos del Aprendiz
+##  Datos del Aprendiz
 
 
 Ficha: 3407180
